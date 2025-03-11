@@ -30,22 +30,22 @@ Usamos **R** y sus herramientas de análisis para procesar, limpiar y visualizar
 
 ## 📊 Visualizaciones Destacadas
 
-### 📈 1️⃣ Serie Histórica de Emisiones Netas en España
-Clasificación de las emisiones en **LOW, MED y HIGH EMISSIONS** para identificar periodos críticos.
+### 🌎 1️⃣ Emisiones Totales de Gases de Efecto Invernadero por Año
+Análisis de la tendencia general de emisiones en España.
 <p align="center">
-  <img src="https://i.imgur.com/YqlzsfZ.png" width="70%">
+  <img src="https://i.imgur.com/MsuyYwv.png" width="70%">
 </p>
 
 ### 🏭 2️⃣ Evolución de las Emisiones por Tipo de Gas en España
 Comparación de la evolución de distintos gases de efecto invernadero.
 <p align="center">
-  <img src="https://i.imgur.com/HlSLjOh.png" width="70%">
+  <img src="https://i.imgur.com/hVkiK3b.png" width="70%">
 </p>
 
-### 🌎 3️⃣ Emisiones Totales de Gases de Efecto Invernadero por Año
-Análisis de la tendencia general de emisiones en España.
+### 📈 3️⃣ Serie Histórica de Emisiones Netas en España
+Clasificación de las emisiones en **LOW, MED y HIGH EMISSIONS** para identificar periodos críticos.
 <p align="center">
-  <img src="https://i.imgur.com/ucixrgx.png" width="70%">
+  <img src="https://i.imgur.com/tlavJnG.png" width="70%">
 </p>
 
 ---

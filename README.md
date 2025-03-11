@@ -1,40 +1,49 @@
-# 🌍 Emisiones de Gases en España: ¿Cuánto contaminamos realmente? 
+# 🌍 Análisis de Emisiones en España: Descifrando el Impacto Ambiental
 
 <p align="center">
 <a href="https://github.com/carlosvegag1/Emissions-Analysis-Spain"><img src="https://i.imgur.com/Af3c50M.png" width="80%"></a>
 </p>
 
-## 🏭 ¿Es España un país contaminante?
+## 🏭 ¿Cuánto contamina España realmente?
 
-Las emisiones de **gases de efecto invernadero** están en el centro del debate climático. ¿Pero qué sectores son los más contaminantes? ¿Cómo han **evolucionado** las emisiones en los últimos años?  
-En este análisis exploramos **datos reales** sobre emisiones en España, detectando tendencias y visualizando el impacto ambiental de distintas industrias.
+Las emisiones de **gases de efecto invernadero** están en el centro del debate ambiental, pero...  
+
+📉 **¿Están aumentando o disminuyendo?**  
+🔬 **¿Cuál es el papel de los gases fluorados en la contaminación?**  
+📊 **¿Cómo han evolucionado las emisiones en los últimos años?**  
+🛑 **¿Podemos categorizar los niveles de emisión para detectar patrones clave?**  
+
+Este proyecto explora **datos reales de emisiones en España** desde 1970 hasta 2021, analizando su evolución y visualizando su impacto ambiental mediante técnicas de **Análisis Exploratorio de Datos (EDA) en R**.
 
 ---
 
-## 🔎 ¿Qué puedes descubrir en este proyecto?
+## 🔎 ¿Qué puedes descubrir en este análisis?
 
-✅ **¿Qué industrias generan más emisiones en España?**  
-✅ **¿Cómo han cambiado las emisiones a lo largo del tiempo?**  
-✅ **¿Qué papel juegan los gases fluorados en la contaminación?**  
-✅ **¿Podemos identificar patrones preocupantes en los datos?**  
+✅ **Transformación y limpieza de datos:** Estandarización de las series temporales de emisiones.  
+✅ **Tendencias de emisiones en España:** Evolución histórica y patrones clave.  
+✅ **Impacto de los gases fluorados:** Los "invisibles" del calentamiento global.  
+✅ **Clasificación de niveles de emisión:** Identificación de periodos críticos con LOW, MED y HIGH EMISSIONS.  
 
-Usamos **R** y sus potentes herramientas de análisis para procesar, limpiar y visualizar estos datos de manera clara e impactante.
+Usamos **R** y sus herramientas de análisis para procesar, limpiar y visualizar estos datos de manera clara e impactante.
 
 ---
 
 ## 📊 Visualizaciones Destacadas
 
-### 📈 Evolución de las Emisiones en España (1970-2021)
+### 📈 1️⃣ Serie Histórica de Emisiones Netas en España
+Clasificación de las emisiones en **LOW, MED y HIGH EMISSIONS** para identificar periodos críticos.
 <p align="center">
   <img src="https://i.imgur.com/YqlzsfZ.png" width="70%">
 </p>
 
-### 🏭 Industrias más Contaminantes: ¿Quién lidera el ranking?
+### 🏭 2️⃣ Evolución de las Emisiones por Tipo de Gas en España
+Comparación de la evolución de distintos gases de efecto invernadero.
 <p align="center">
   <img src="https://i.imgur.com/HlSLjOh.png" width="70%">
 </p>
 
-### 🔬 Gases Fluorados: Los "invisibles" del calentamiento global
+### 🌎 3️⃣ Emisiones Totales de Gases de Efecto Invernadero por Año
+Análisis de la tendencia general de emisiones en España.
 <p align="center">
   <img src="https://i.imgur.com/ucixrgx.png" width="70%">
 </p>

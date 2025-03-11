@@ -61,6 +61,7 @@ Ejecuta cada celda para ver los resultados y gráficos en acción
 ---
 ### 🤝 Compalte
 Este proyecto es un análisis que he desarrollado como parte de mi formación en ciencia de datos. Si te interesa el análisis de datos y el impacto medioambiental, dale un vistazo y dime qué opinas.
+
 **⭐ Si te resulta útil, no olvides darle una estrella al repositorio. 🚀**
 
 ### 📬 Contacto

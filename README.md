@@ -8,9 +8,9 @@
 
 Las emisiones de **gases de efecto invernadero** están en el centro del debate ambiental, pero...  
 
-📉 **¿Están aumentando o disminuyendo?**  
+📉 **¿Cuál es su tendencia?**  
 🔬 **¿Cuál es el papel de los gases fluorados en la contaminación?**  
-📊 **¿Cómo han evolucionado las emisiones en los últimos años?**  
+📊 **¿Cómo han evolucionado las emisiones?**  
 🛑 **¿Podemos categorizar los niveles de emisión para detectar patrones clave?**  
 
 Este proyecto explora **datos reales de emisiones en España** desde 1970 hasta 2021, analizando su evolución y visualizando su impacto ambiental mediante técnicas de **Análisis Exploratorio de Datos (EDA) en R**.
@@ -69,7 +69,7 @@ Ejecuta cada celda para ver los resultados y gráficos en acción
 
 ---
 ### 🤝 Compalte
-Este proyecto es un análisis que he desarrollado como parte de mi formación en ciencia de datos. Si te interesa el análisis de datos y el impacto medioambiental, dale un vistazo y dime qué opinas.
+Este proyecto es un análisis que he desarrollado como parte de mi formación en ciencia de datos. Si te interesa la ciencia de datos y el impacto medioambiental, dale un vistazo y dime qué opinas.
 
 **⭐ Si te resulta útil, no olvides darle una estrella al repositorio. 🚀**
 

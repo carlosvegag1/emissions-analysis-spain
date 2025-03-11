@@ -33,7 +33,7 @@ Usamos **R** y sus herramientas de análisis para procesar, limpiar y visualizar
 ### 🌎 1️⃣ Emisiones Totales de Gases de Efecto Invernadero por Año
 Análisis de la tendencia general de emisiones en España.
 <p align="center">
-  <img src="https://i.imgur.com/MsuyYwv.png" width="70%">
+  <img src="https://i.imgur.com/jD9BhGe.png" width="70%">
 </p>
 
 ### 🏭 2️⃣ Evolución de las Emisiones por Tipo de Gas en España

@@ -24,3 +24,11 @@ data/*.sqlite
 # Directorios de entorno virtual en R
 renv/
 renv.lock
+
+docs/
+!docs/*.pdf
+!docs/*.html
+
+data/
+!data/*.csv  # Permite archivos CSV dentro de data/
+

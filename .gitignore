@@ -17,18 +17,8 @@ _cache/
 *.knit.md
 *.utf8.md
 
-# Archivos de datos pesados
-data/*.rds
-data/*.sqlite
 
 # Directorios de entorno virtual en R
 renv/
 renv.lock
-
-docs/
-!docs/*.pdf
-!docs/*.html
-
-data/
-!data/*.csv  # Permite archivos CSV dentro de data/
 

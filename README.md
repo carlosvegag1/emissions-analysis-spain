@@ -54,7 +54,7 @@ Clasificación de las emisiones en **LOW, MED y HIGH EMISSIONS** para identifica
 
 ### 1️⃣ Clona el Repositorio
 ```bash
-git clone https://github.com/carlosvegag1/Emissions-Analysis-Spain.git
+git clone https://github.com/carlosvegag1/emissions-analysis-spain.git
 cd Emissions-Analysis-Spain
 ```
 ### 2️⃣ Instala las Dependencias en R

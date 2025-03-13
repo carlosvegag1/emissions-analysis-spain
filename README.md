@@ -31,19 +31,16 @@ Usamos **R** y sus herramientas de análisis para procesar, limpiar y visualizar
 ## 📊 Visualizaciones Destacadas
 
 ### 🌎 1️⃣ Emisiones Totales de Gases de Efecto Invernadero por Año
-Análisis de la tendencia general de emisiones en España.
 <p align="center">
   <img src="https://i.imgur.com/jD9BhGe.png" width="70%">
 </p>
 
 ### 🏭 2️⃣ Evolución de las Emisiones por Tipo de Gas en España
-Comparación de la evolución de distintos gases de efecto invernadero.
 <p align="center">
   <img src="https://i.imgur.com/hVkiK3b.png" width="70%">
 </p>
 
 ### 📈 3️⃣ Serie Histórica de Emisiones Netas en España
-Clasificación de las emisiones en **LOW, MED y HIGH EMISSIONS** para identificar periodos críticos.
 <p align="center">
   <img src="https://i.imgur.com/tlavJnG.png" width="70%">
 </p>
@@ -57,26 +54,40 @@ Clasificación de las emisiones en **LOW, MED y HIGH EMISSIONS** para identifica
 git clone https://github.com/carlosvegag1/emissions-analysis-spain.git
 cd Emissions-Analysis-Spain
 ```
-### 2️⃣ Instala las Dependencias en R
+### 2️⃣ Abre el proyecto en RStudio
+Para garantizar que todas las rutas de archivos se configuren automáticamente, abre el archivo del proyecto en RStudio:
+
+🔹 Doble clic en Emissions-Analysis-Spain.Rproj
+
+🔹 Esto establecerá el directorio de trabajo correctamente.
+
+### 3️⃣ Instala las Dependencias en R
 ```bash
-install.packages(c("dplyr", "ggplot2", "tidyr"))
+source("requirements.R")
 ```
-### 3️⃣ Abre y ejecuta el análisis en RStudio
-```bash
-Abre notebook_reducido.Rmd
-Ejecuta cada celda para ver los resultados y gráficos en acción
-```
+
+### 4️⃣ Abre y ejecuta el análisis en RStudio
+🔹Abre RStudio
+
+🔹Carga el archivo:
+
+Desde el menú: File > Open File
+
+🔹Selecciona emissions_analysis_spain.Rmd
+
+🔹Ejecuta cada celda en orden para visualizar los resultados y gráficos.
+
 ## 🔎 Otras formas de visualizar el análisis  
 
 Si prefieres explorar el análisis sin necesidad de ejecutar código, puedes acceder aquí:  
 
 1️⃣
 📄 **Versión en HTML**  
-🔗 **[Accidents-Analysis-Madrid.html](https://carlosvegag1.github.io/accidents-analysis-madrid/accidents_analysis.html)**
+🔗 **[Emissions-Analysis-Spain.html](https://carlosvegag1.github.io/accidents-analysis-madrid/accidents_analysis.html)**
 
 2️⃣
 📄 **Versión en PDF**  
-🔗 **[Accidents-Analysis-Madrid.pdf](https://github.com/carlosvegag1/accidents-analysis-madrid/blob/main/docs/accidents_analysis.pdf)**
+🔗 **[Emissions-Analysis-Spain.pdf](https://github.com/carlosvegag1/accidents-analysis-madrid/blob/main/docs/accidents_analysis.pdf)**
 
 ---
 

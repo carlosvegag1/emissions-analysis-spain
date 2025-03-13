@@ -1,13 +1,6 @@
-# Archivos de salida generados
-output/
-*.html
-*.pdf
-*.docx
-
 # Archivos temporales de R y caché
-*.Rproj.user
+*.Rproj.user/
 .Rhistory
-.Rproj.user/
 .RData
 .Ruserdata
 .Rprofile
@@ -28,13 +21,3 @@ _cache/
 # Directorios de entorno virtual en R
 renv/
 renv.lock
-
-<<<<<<< HEAD
-=======
-!docs/
-!docs/*.pdf
-!docs/*.html
-!data/
-!data/*.csv
->>>>>>> 88d5cce (Actualizando)
-

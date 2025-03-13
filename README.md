@@ -87,8 +87,7 @@ Si prefieres explorar el análisis sin necesidad de ejecutar código, puedes acc
 
 2️⃣
 📄 **Versión en PDF**  
-🔗 **[Emissions-Analysis-Spain.pdf](https://github.com/carlosvegag1/emissions-analysis-spain
-/blob/main/docs/emissions_analysis_spain)**
+🔗 **[Emissions-Analysis-Spain.pdf](https://github.com/carlosvegag1/emissions-analysis-spain/blob/main/docs/emissions_analysis_spain.pdf)**
 
 ---
 

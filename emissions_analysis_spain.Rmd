@@ -1,0 +1,437 @@
+---
+title: 'emissions_analysis_spain'
+author: "Carlos Vega González"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# **Emissions-Analysis-Spain: Carlos Vega González**
+
+## Índice de contenidos
+
+1.  Introducción\
+2.  Carga de datos y paquetes necesarios\
+3.  Transformación de las columnas anuales\
+4.  Limpieza de la columna Year\
+5.  Manejo de valores faltantes\
+6.  Filtrado de datos por países válidos\
+7.  Análisis de emisiones de gases de efecto invernadero\
+8.  Visualización de emisiones de gases de efecto invernadero\
+9.  Análisis de gases fluorados\
+10. Visualización de emisiones por tipo de gas en España\
+11. Industria más contaminante en España\
+12. Creación de la categoría LEVEL_EMISSIONS
+
+------------------------------------------------------------------------
+
+## 1. Introducción
+
+El objetivo principal es obtener información relevante sobre las emisiones de gases contaminantes y estudiar cómo varían a lo largo del tiempo. Con este fin, a lo largo del documento se emplean diferentes técnicas de transformación, limpieza y visualización de datos que permiten extraer conclusiones valiosas a partir de un conjunto complejo de observaciones.
+
+## 2. Carga de datos y paquetes necesarios
+
+### ¿Cómo lo resolví?
+
+Para llevar a cabo el EDA, se requiere contar con diversas librerías de manipulación y visualización en R, como **tidyr**, **dplyr** y **ggplot2**. Una vez cargados los paquetes, se importa el conjunto de datos que contiene la información de emisiones y temperaturas.
+
+### Características del código:
+
+-   Se incluyen los paquetes esenciales para la limpieza, transformación y visualización de datos.
+-   Se realiza la lectura del archivo CSV con las emisiones anuales.
+
+```{r}
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(here)
+
+df <- read.csv(here("data", "annual_surface_temperature_change.csv"))
+```
+
+```{r}
+head(df)
+```
+
+------------------------------------------------------------------------
+
+## 3. Transformación de las columnas anuales
+
+### ¿Cómo lo resolví?
+
+Para analizar las emisiones de manera más efectiva, es conveniente transformar las columnas anuales (**F1970** a **F2021**) en un formato largo (*long format*). Esto facilita agrupar, filtrar y resumir la información por año y por país.
+
+### Características del código:
+
+-   Se utiliza la función `gather()` para pasar de un formato amplio a uno largo.
+-   Se registra el número de filas y columnas antes y después de la transformación para confirmar el proceso.
+
+```{r}
+df_transformado <- gather(df, key = "Year", value = "Value", F1970:F2021)
+dimensiones_original <- dim(df)
+dimensiones_transformado <- dim(df_transformado)
+dimensiones_original
+dimensiones_transformado
+```
+
+------------------------------------------------------------------------
+
+## 4. Limpieza de la columna Year
+
+### ¿Cómo lo resolví?
+
+La columna `Year` contiene un prefijo "F" que es innecesario para el análisis. Por ello, se elimina mediante la función `sub()` y, posteriormente, se convierte la columna a factor para un mejor manejo de los datos categóricos.
+
+### Características del código:
+
+-   El prefijo "F" se elimina con la expresión regular adecuada.
+-   Se trabaja con la columna resultante como factor para facilitar los agrupamientos posteriores.
+
+```{r}
+df_transformado$Year <- as.factor(sub("F", "", df_transformado$Year))
+```
+
+------------------------------------------------------------------------
+
+## 5. Manejo de valores faltantes
+
+### ¿Cómo lo resolví?
+
+Para evitar sesgos en el análisis debido a la presencia de valores faltantes en la columna `Value`, se optó por sustituir estos valores por la media anual de cada año. De esta forma, se preserva la variabilidad por períodos en lugar de usar una media global.
+
+### Características del código:
+
+-   Se agrupan los datos por `Year`.
+-   Se utiliza la media anual como criterio de reemplazo de valores `NA`.
+-   Se mantiene la estructura del conjunto de datos al finalizar el proceso.
+
+```{r}
+
+df_transformado <- df_transformado %>%
+  group_by(Year) %>%
+  mutate(Value = ifelse(is.na(Value), round(mean(Value, na.rm = TRUE), 2), round(Value, 2))) %>%
+  ungroup()
+
+anyNA(df_transformado$Value)
+
+df_transformado$Value[1:50]
+
+```
+
+------------------------------------------------------------------------
+
+## 6. Filtrado de datos por países válidos
+
+### ¿Cómo lo resolví?
+
+Dado que el conjunto de datos puede incluir agregados regionales o clasificaciones (p. ej., "Advanced Economies") que no corresponden a países específicos, se optó por filtrar los datos conservando únicamente aquellos países válidos encontrados en una lista externa.
+
+### Características del código:
+
+-   Se lee un archivo CSV que contiene la lista de países válidos.
+-   Se realiza el filtrado comparando la columna `Country` con los niveles disponibles en la lista.
+-   Se elimina la información de países no contemplados en la lista para obtener un subconjunto más exacto.
+
+```{r}
+paises <- read.csv(here("data", "lista_paises_final.csv"), fileEncoding = "ISO-8859-1")
+
+
+paises$Country <- as.factor(paises$Country)
+
+df_filtrado <- df_transformado %>%
+  filter(Country %in% levels(paises$Country))
+
+df_filtrado$Country <- droplevels(as.factor(df_filtrado$Country))
+nrow(df_filtrado)
+```
+
+------------------------------------------------------------------------
+
+## 7. Análisis de emisiones de gases de efecto invernadero
+
+### ¿Cómo lo resolví?
+
+Para focalizar el estudio en las emisiones de gases de efecto invernadero (GEI), se filtraron únicamente las observaciones correspondientes a la variable `Gas_Type == "Greenhouse gas"`. Luego, se calculó el total de emisiones por año y se ordenaron de mayor a menor.
+
+### Características del código:
+
+-   Se seleccionan solo las filas cuyo tipo de gas es **Greenhouse gas**.
+-   Se agrupan las emisiones por año y se suman para obtener el total anual.
+-   El resultado se ordena para identificar rápidamente los años con mayores emisiones.
+
+```{r}
+greenhouse <- subset(df_filtrado, Gas_Type == "Greenhouse gas")
+emisiones_greenhouse <- aggregate(Value ~ Year, data = greenhouse, sum)
+emisiones_greenhouse <- emisiones_greenhouse[order(-emisiones_greenhouse$Value), ]
+emisiones_greenhouse[1:3, ]
+```
+
+------------------------------------------------------------------------
+
+## 8. Visualización de emisiones de gases de efecto invernadero
+
+### ¿Cómo lo resolví?
+
+Para representar gráficamente la tendencia de las emisiones totales de GEI a lo largo de los años, se utiliza un diagrama de líneas. Este tipo de visualización facilita la identificación de patrones o posibles cambios bruscos en las emisiones.
+
+### Características del código:
+
+-   Se realiza un gráfico de líneas con el año en el eje **X** y las emisiones totales en el eje **Y**.
+-   El título y las etiquetas de los ejes se establecen para mayor claridad.
+
+```{r}
+plot(emisiones_greenhouse$Year, emisiones_greenhouse$Value, type = "l", 
+     main = "Emisiones de Gases de Efecto Invernadero por Año",
+     xlab = "Año", ylab = "Emisiones Totales")
+```
+
+```{r}
+emisiones_greenhouse$Year <- as.numeric(as.character(emisiones_greenhouse$Year))
+
+ggplot(emisiones_greenhouse, aes(x = Year, y = Value)) +
+  geom_line(color = "#3498DB") +  
+  geom_point(color = "#2980B9", size = 2, alpha = 0.8) +  
+  geom_smooth(se = FALSE, linetype = "dashed", color = "#1F618D") +  
+  scale_x_continuous(breaks = seq(min(emisiones_greenhouse$Year, na.rm = TRUE), 
+                                  max(emisiones_greenhouse$Year, na.rm = TRUE), by = 5)) +
+  labs(title = "Emisiones de Gases de Efecto Invernadero por Año",
+       subtitle = "Tendencia histórica de emisiones",
+       x = "Año", y = "Emisiones Totales") +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5),
+    axis.text.x = element_text(angle = 30, vjust = 0.5),
+    axis.text.y = element_text(size = 12),
+    panel.grid.major = element_line(linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+
+
+```
+
+------------------------------------------------------------------------
+
+## 9. Análisis de gases fluorados
+
+### ¿Cómo lo resolví?
+
+Se pone el foco en las emisiones de gases fluorados, buscando identificar si hubo una caída destacable en algún año en particular. Después, se determina qué países tuvieron mayores emisiones promedio en ese período específico.
+
+### Características del código:
+
+-   Se filtran los datos donde `Gas_Type == "fluorinado gases"`.
+-   Se agrupan las emisiones por año y se calculan las diferencias para detectar el año con la mayor caída.
+-   Se listan los cinco países con mayor promedio de emisiones en el año identificado.
+
+```{r}
+fluorinado <- df_filtrado %>% 
+  filter(Gas_Type == "Fluorinated gases")
+
+fluorinado_summary <- fluorinado %>%
+  group_by(Year) %>%
+  summarise(total_emissions = sum(Value, na.rm = TRUE)) %>%
+  arrange(desc(total_emissions))
+
+diferencias <- fluorinado_summary %>%
+  mutate(diff = c(NA, diff(total_emissions))) %>%
+  filter(!is.na(diff)) %>%
+  slice(which.min(diff) + 1) %>%
+  pull(Year)
+
+fluorinado_caida <- fluorinado %>%
+  filter(Year == diferencias)
+
+top5_paises <- fluorinado_caida %>%
+  group_by(Country) %>%
+  summarise(media_emisiones = mean(Value, na.rm = TRUE)) %>%
+  arrange(desc(media_emisiones)) %>%
+  slice_head(n = 5)
+
+top5_paises
+
+```
+
+------------------------------------------------------------------------
+
+## 10. Visualización de emisiones por tipo de gas en España
+
+### ¿Cómo lo resolví?
+
+Para analizar de forma particular la evolución de las emisiones en España, se filtran los datos por país y se excluyen aquellos registros donde el tipo de gas se marca como `"Not Applicable"`. Se genera un gráfico de líneas para observar la evolución de cada tipo de gas a lo largo del tiempo.
+
+### Características del código:
+
+-   Se trabaja únicamente con la información de España (`Country == "Spain"`).
+-   Se representan múltiples series en un mismo lienzo, diferenciadas por `Gas_Type`.
+-   El uso de **ggplot2** facilita la personalización de ejes, leyendas y colores.
+
+
+------------------------------------------------------------------------
+```{r}
+spain_gas <- df_filtrado %>% filter(Country == "Spain")
+spain_gas$Year <- as.numeric(as.character(spain_gas$Year))
+
+ggplot(spain_gas, aes(x = Year, y = Value, color = Gas_Type, group = Gas_Type)) +
+  geom_line(linewidth = 1.2) + 
+  geom_smooth(method = "loess", se = FALSE, linetype = "dashed", linewidth = 0.8) +
+  scale_x_continuous(breaks = seq(min(spain_gas$Year, na.rm = TRUE), 
+                                  max(spain_gas$Year, na.rm = TRUE), by = 5)) + 
+  scale_color_manual(values = c("Carbon dioxide" = "#E74C3C", 
+                                "Fluorinated gases" = "#F1C40F", 
+                                "Greenhouse gas" = "#2ECC71", 
+                                "Methane" = "#3498DB", 
+                                "Nitrous oxide" = "#9B59B6")) + 
+  labs(title = "Evolución de Emisiones por Tipo de Gas en España",
+       subtitle = "Datos de emisiones de gases de efecto invernadero por tipo",
+       x = "Año", y = "Emisiones",
+       color = "Tipo de Gas") +
+  theme_minimal(base_size = 14) + 
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5),
+    axis.text.x = element_text(angle = 45, vjust = 0.5),
+    legend.position = "top"
+  )
+
+
+```
+
+
+```{r}
+y_max <- max(spain_gas$Value, na.rm = TRUE)
+ggplot(spain_gas, aes(x = Year, y = Value, fill = Gas_Type)) +
+  geom_area(alpha = 0.6) +  
+  scale_fill_manual(values = c("Carbon dioxide" = "#E74C3C", 
+                               "Fluorinated gases" = "#F1C40F", 
+                               "Greenhouse gas" = "#2ECC71", 
+                               "Methane" = "#3498DB", 
+                               "Nitrous oxide" = "#9B59B6")) +
+  scale_y_continuous(limits = c(0, y_max)) +  
+  labs(title = "Evolución de Emisiones por Tipo de Gas en España",
+       subtitle = "Datos de emisiones de gases de efecto invernadero por tipo",
+       x = "Año", y = "Emisiones",
+       fill = "Tipo de Gas") +
+  theme_minimal(base_size = 14) +
+  facet_wrap(~Gas_Type, ncol = 3) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5),
+    axis.text.x = element_text(angle = 45, vjust = 0.5),
+    legend.position = "none",
+    strip.text = element_text(size = 14, face = "bold"),
+  )
+
+
+```
+
+
+
+
+## 11. Industria más contaminante en España
+
+### ¿Cómo lo resolví?
+
+Entre los diferentes sectores o industrias, se identifica cuál emite más gases contaminantes en España, basándose en la suma total de emisiones para cada industria.
+
+### Características del código:
+
+-   Se filtran industrias válidas (excluyendo valores nulos o etiquetas genéricas).
+-   Se agrupan los datos por industria y se calculan las emisiones totales.
+-   Se ordenan los resultados para determinar las industrias que más contribuyen a la contaminación.
+
+```{r}
+industria_spain <- spain_gas %>%
+  filter(!is.na(Industry) & Industry != "") %>%
+  group_by(Industry) %>%
+  summarise(total_emissions = sum(Value, na.rm = TRUE)) %>%
+  arrange(desc(total_emissions))
+
+industria_spain
+
+```
+
+```{r}
+industria_spain <- spain_gas %>%
+  filter(!is.na(Industry) & Industry != "" & Industry != "Not Applicable") %>%
+  group_by(Industry) %>%
+  summarise(total_emissions = sum(Value, na.rm = TRUE)) %>%
+  arrange(desc(total_emissions))
+
+industria_spain
+
+```
+
+------------------------------------------------------------------------
+
+## 12. Creación de la categoría LEVEL_EMISSIONS
+
+### ¿Cómo lo resolví?
+
+Por último, se propone una categorización de las emisiones netas anuales de España en niveles “bajas”, “medias” y “altas” para observar de forma clara los patrones y cambios temporales.
+
+### Características del código:
+
+-   Se crea la columna `LEVEL_EMISSIONS` con la función `cut()` empleando puntos de corte adecuados.
+-   Se visualiza la serie histórica coloreando los puntos según su nivel de emisiones.
+-   La paleta de colores se ajusta para dejar claro cada nivel.
+
+```{r}
+head(df_filtrado)
+```
+
+```{r}
+spain_anual <- df_filtrado %>%
+  filter(Country == "Spain" & Indicator == "Annual Net Emissions/Removals") %>%
+  group_by(Year) %>%
+  summarise(media_emisiones = mean(Value, na.rm = TRUE)) %>%
+  mutate(LEVEL_EMISSIONS = cut(media_emisiones, 
+                               breaks = c(-Inf, 17, 20, Inf), 
+                               labels = c("LOW_EMISSIONS", "MED_EMISSIONS", "HIGH_EMISSIONS")))
+spain_anual$Year <- as.numeric(as.character(spain_anual$Year))
+ggplot(spain_anual, aes(x = Year, y = media_emisiones, color = LEVEL_EMISSIONS)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Serie Histórica de Emisiones Netas en España", 
+       x = "Año", y = "Emisiones Medias") +
+  theme_minimal() + 
+  scale_color_manual(values = c("LOW_EMISSIONS" = "green", 
+                                "MED_EMISSIONS" = "orange", 
+                                "HIGH_EMISSIONS" = "red"))
+
+```
+
+```{r}
+spain_anual$Year <- as.numeric(as.character(spain_anual$Year))
+
+
+ggplot(spain_anual, aes(x = Year, y = media_emisiones, color = LEVEL_EMISSIONS)) +
+  geom_point(size = 2, alpha = 0.8) + 
+  geom_line(size = 1) +  
+  geom_smooth(method = "loess", se = FALSE, linetype = "dashed") +
+  scale_color_manual(values = c("LOW_EMISSIONS" = "#2ECC71", 
+                                "MED_EMISSIONS" = "#F39C12", 
+                                "HIGH_EMISSIONS" = "#E74C3C")) + 
+  labs(title = "Serie Histórica de Emisiones Netas en España", 
+       subtitle = "Clasificación por niveles de emisiones",
+       x = "Año", y = "Emisiones Medias",
+       color = "Nivel de Emisiones") +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5),
+    axis.text.x = element_text(angle = 30, vjust = 0.5),
+    axis.text.y = element_text(size = 12),
+    legend.position = "top",
+    legend.title = element_text(face = "bold"),
+    panel.grid.major = element_line(linetype = "dashed", color = "gray80"),
+    panel.grid.minor = element_blank()
+  )
+
+```
+
+
+
+```{r}
+spain_anual
+```

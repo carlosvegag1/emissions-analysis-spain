@@ -1,0 +1,36 @@
+# Archivos de salida generados
+docs/
+*.html
+*.pdf
+*.docx
+
+# Archivos temporales de R y caché
+*.Rproj
+.Rhistory
+.RData
+.Ruserdata
+.Rprofile
+.Rapp.history
+*.Rout
+*.Rout.save
+*.rdb
+*.rdx
+*.tar.gz
+*.tmp
+*.log
+
+# Archivos de caché de R Markdown
+_cache/
+*.knit.md
+*.utf8.md
+
+# Archivos de datos pesados
+data/*.csv
+data/*.xlsx
+data/*.rds
+data/*.sqlite
+
+# Directorios de entorno virtual en R
+renv/
+renv.lock
+.Rproj.user

@@ -1,11 +1,4 @@
-# Archivos de salida generados
-docs/
-*.html
-*.pdf
-*.docx
-
 # Archivos temporales de R y caché
-*.Rproj
 .Rhistory
 .RData
 .Ruserdata
@@ -25,7 +18,6 @@ _cache/
 *.utf8.md
 
 # Archivos de datos pesados
-data/*.csv
 data/*.xlsx
 data/*.rds
 data/*.sqlite
@@ -33,4 +25,3 @@ data/*.sqlite
 # Directorios de entorno virtual en R
 renv/
 renv.lock
-.Rproj.user

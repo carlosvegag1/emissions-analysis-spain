@@ -7,6 +7,7 @@ output/
 # Archivos temporales de R y caché
 *.Rproj.user
 .Rhistory
+.Rproj.user/
 .RData
 .Ruserdata
 .Rprofile
@@ -28,4 +29,12 @@ _cache/
 renv/
 renv.lock
 
+<<<<<<< HEAD
+=======
+!docs/
+!docs/*.pdf
+!docs/*.html
+!data/
+!data/*.csv
+>>>>>>> 88d5cce (Actualizando)
 

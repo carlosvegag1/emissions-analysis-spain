@@ -18,7 +18,6 @@ _cache/
 *.utf8.md
 
 # Archivos de datos pesados
-data/*.xlsx
 data/*.rds
 data/*.sqlite
 

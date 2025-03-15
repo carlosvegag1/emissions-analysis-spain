@@ -1,7 +1,7 @@
 # 🌍 Análisis de Emisiones en España: Descifrando el Impacto Ambiental
 
 <p align="center">
-<a href="https://github.com/carlosvegag1/Emissions-Analysis-Spain"><img src="https://i.imgur.com/Af3c50M.png" width="80%"></a>
+<a href="https://github.com/carlosvegag1/Emissions-Analysis-Spain"><img src="https://i.imgur.com/pLEON4s.png" width="80%"></a>
 </p>
 
 ## 🏭 ¿Cuánto contamina España realmente?

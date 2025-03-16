@@ -19,10 +19,10 @@ Este proyecto explora **datos reales de emisiones en España** desde 1970 hasta 
 
 ## 🔎 ¿Qué puedes descubrir en este análisis?
 
-✅ **Transformación y limpieza de datos:** Estandarización de las series temporales de emisiones.  
+✅ **Transformación y limpieza de datos:** Estandarización de series temporales.  
 ✅ **Tendencias de emisiones en España:** Evolución histórica y patrones clave.  
 ✅ **Impacto de los gases fluorados:** Los "invisibles" del calentamiento global.  
-✅ **Clasificación de niveles de emisión:** Identificación de periodos críticos con LOW, MED y HIGH EMISSIONS.  
+✅ **Clasificación de niveles de emisión:** Identificación de periodos críticos.  
 
 Usamos **R** y sus herramientas de análisis para procesar, limpiar y visualizar estos datos de manera clara e impactante.
 

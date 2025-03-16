@@ -57,9 +57,8 @@ cd Emissions-Analysis-Spain
 ### 2. Abre el proyecto en RStudio
 Para garantizar que todas las rutas de archivos se configuren automáticamente, abre el archivo del proyecto en RStudio:
 
-🔹 Doble clic en Emissions-Analysis-Spain.Rproj
-
-🔹 Esto establecerá el directorio de trabajo correctamente.
+- Doble clic en Emissions-Analysis-Spain.Rproj
+- Esto establecerá el directorio de trabajo correctamente.
 
 ### 3. Instala las Dependencias en R
 ```bash

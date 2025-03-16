@@ -49,33 +49,29 @@ Usamos **R** y sus herramientas de análisis para procesar, limpiar y visualizar
 
 ## 🛠️ ¿Cómo puedes ejecutarlo?
 
-### 1️ Clona el Repositorio
+### 1. Clona el Repositorio
 ```bash
 git clone https://github.com/carlosvegag1/emissions-analysis-spain.git
 cd Emissions-Analysis-Spain
 ```
-### 2️ Abre el proyecto en RStudio
+### 2. Abre el proyecto en RStudio
 Para garantizar que todas las rutas de archivos se configuren automáticamente, abre el archivo del proyecto en RStudio:
 
 🔹 Doble clic en Emissions-Analysis-Spain.Rproj
 
 🔹 Esto establecerá el directorio de trabajo correctamente.
 
-### 3️ Instala las Dependencias en R
+### 3. Instala las Dependencias en R
 ```bash
 source("requirements.R")
 ```
 
-### 4️ Abre y ejecuta el análisis en RStudio
-🔹Abre RStudio
-
-🔹Carga el archivo:
-
-Desde el menú: File > Open File
-
-🔹Selecciona emissions_analysis_spain.Rmd
-
-🔹Ejecuta cada celda en orden para visualizar los resultados y gráficos.
+### 4. Abre y ejecuta el análisis en RStudio
+- Abre RStudio
+- Carga el archivo:
+- Desde el menú: File > Open File
+- Selecciona emissions_analysis_spain.Rmd
+- Ejecuta cada celda en orden para visualizar los resultados y gráficos.
 
 ## 🔎 Otras formas de visualizar el análisis  
 

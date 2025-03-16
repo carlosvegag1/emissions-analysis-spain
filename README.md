@@ -28,19 +28,19 @@ Usamos **R** y sus herramientas de análisis para procesar, limpiar y visualizar
 
 ---
 
-## 📊 Visualizaciones Destacadas
+## Visualizaciones Destacadas
 
-### 🌎 1️⃣ Emisiones Totales de Gases de Efecto Invernadero por Año
+### 🌎 Emisiones Totales de Gases de Efecto Invernadero por Año
 <p align="center">
   <img src="https://i.imgur.com/jD9BhGe.png" width="70%">
 </p>
 
-### 🏭 2️⃣ Evolución de las Emisiones por Tipo de Gas en España
+### 🏭 Evolución de las Emisiones por Tipo de Gas en España
 <p align="center">
   <img src="https://i.imgur.com/hVkiK3b.png" width="70%">
 </p>
 
-### 📈 3️⃣ Serie Histórica de Emisiones Netas en España
+### 📈 Serie Histórica de Emisiones Netas en España
 <p align="center">
   <img src="https://i.imgur.com/tlavJnG.png" width="70%">
 </p>
@@ -49,24 +49,24 @@ Usamos **R** y sus herramientas de análisis para procesar, limpiar y visualizar
 
 ## 🛠️ ¿Cómo puedes ejecutarlo?
 
-### 1️⃣ Clona el Repositorio
+### 1️ Clona el Repositorio
 ```bash
 git clone https://github.com/carlosvegag1/emissions-analysis-spain.git
 cd Emissions-Analysis-Spain
 ```
-### 2️⃣ Abre el proyecto en RStudio
+### 2️ Abre el proyecto en RStudio
 Para garantizar que todas las rutas de archivos se configuren automáticamente, abre el archivo del proyecto en RStudio:
 
 🔹 Doble clic en Emissions-Analysis-Spain.Rproj
 
 🔹 Esto establecerá el directorio de trabajo correctamente.
 
-### 3️⃣ Instala las Dependencias en R
+### 3️ Instala las Dependencias en R
 ```bash
 source("requirements.R")
 ```
 
-### 4️⃣ Abre y ejecuta el análisis en RStudio
+### 4️ Abre y ejecuta el análisis en RStudio
 🔹Abre RStudio
 
 🔹Carga el archivo:
@@ -81,11 +81,9 @@ Desde el menú: File > Open File
 
 Si prefieres explorar el análisis sin necesidad de ejecutar código, puedes acceder aquí:  
 
-1️⃣
 📄 **Versión en HTML**  
 🔗 **[Emissions-Analysis-Spain.html](https://carlosvegag1.github.io/emissions-analysis-spain/emissions_analysis_spain)**
 
-2️⃣
 📄 **Versión en PDF**  
 🔗 **[Emissions-Analysis-Spain.pdf](https://github.com/carlosvegag1/emissions-analysis-spain/blob/main/docs/emissions_analysis_spain.pdf)**
 
@@ -105,7 +103,7 @@ Estos datos han sido filtrados y publicados en Kaggle bajo el nombre de "Factors
 ### 🤝 Compalte
 Este proyecto es un análisis que he desarrollado como parte de mi formación en ciencia de datos. Si te interesa la ciencia de datos y el impacto medioambiental, dale un vistazo y dime qué opinas.
 
-**⭐ Si te resulta útil, no olvides darle una estrella al repositorio. 🚀**
+**⭐ Si te resulta útil, no olvides darle una estrella al repositorio.**
 
 ### 📬 Contacto
 📌 **LinkedIn:** [Carlos Vega González](https://www.linkedin.com/in/carlos-vega-gonzalez/)  
